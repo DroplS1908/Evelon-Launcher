@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Store - Featured Game</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            cursor: url('mouse.cur'), auto;
+            background-color: #0D0D0D;
+    font-family: 'Arial', sans-serif;
+    color: #fff;
+    display: flex;
+    min-height: 100vh;
+        }
+        /* Scrollbar for the entire page */
+::-webkit-scrollbar {
+    width: 6px; /* Thin width */
+}
+
+/* Scrollbar track (background) */
+::-webkit-scrollbar-track {
+    background: #1A1A1A; /* Dark grey */
+    border-radius: 10px;
+}
+
+/* Scrollbar thumb (draggable part) */
+::-webkit-scrollbar-thumb {
+    background: #666; /* Medium grey */
+    border-radius: 10px;
+    transition: background 0.3s;
+}
+
+/* Scrollbar thumb on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #888; /* Slightly lighter grey */
+}
+
+        a:link { 
+  text-decoration: none; 
+} 
+a:visited { 
+  text-decoration: none; 
+} 
+a:hover { 
+  text-decoration: none; 
+} 
+a:active { 
+  text-decoration: none; 
+}
+        .auth-buttons {
+    display: flex;
+    gap: 15px;
+}
+.auth-buttons button {
+    background: #39FF14; /* Neon green */
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s, transform 0.3s;
+}
+.auth-buttons button:hover {
+    background: #2ECC71; /* A slightly darker green for hover */
+    transform: translateY(-2px);
+}
+        .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(90deg, #181818, #121212);
+    padding: 15px 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+.navbar .nav-links {
+    display: flex;
+    gap: 25px;
+}
+.navbar .nav-links a {
+    color: #bbb;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s, transform 0.3s;
+}
+.navbar .nav-links a:hover {
+    color: #39FF14; /* Neon green */
+    transform: translateY(-2px);
+}
+.search-bar {
+    position: relative;
+    background: #222;
+    padding: 8px 15px;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-results {
+    position: absolute;
+    top: 50px; /* Adjust based on your design */
+    left: 0;
+    width: 100%;
+    background: #222; /* Dark background */
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    z-index: 1000;
+    border: 1px solid #444; /* Add a subtle border */
+}
+
+.search-results a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #bbb; /* Light gray text */
+    text-decoration: none;
+    padding: 8px;
+    border-radius: 8px;
+    transition: background 0.3s;
+    background: #333; /* Darker background for each result */
+}
+
+.search-results a:hover {
+    background: #444; /* Slightly lighter background on hover */
+}
+
+.search-results img {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.search-results span {
+    font-size: 14px;
+    color: #fff; /* White text for better contrast */
+}
+        
+        .logo img {
+            height: 50px;
+        }
+        .left-panel {
+    width: 250px;
+    background: #121212;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 100vh;
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.left-panel h2 {
+    color: #39FF14; /* Neon green */
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.left-panel ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.left-panel ul li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #bbb;
+    font-size: 14px;
+}
+
+.left-panel ul li img {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.left-panel ul li strong {
+    color: #fff;
+    font-weight: bold;
+}
+
+.left-panel ul li span {
+    color: #39FF14; /* Neon green */
+    font-weight: bold;
+    margin-left: auto;
+}
+
+        .center-content {
+            flex-grow: 1;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .game-container {
+            max-width: 900px;
+            background: #222;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            text-align: left;
+        }
+        .game-container img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        h1 {
+            font-size: 28px;
+            color: #39FF14;
+            font-family: 'Orbitron', sans-serif;
+        }
+        .description {
+            font-size: 16px;
+            color: #bbb;
+            margin: 10px 0;
+        }
+        .price {
+            font-size: 24px;
+            font-weight: bold;
+            color: #39FF14;
+            margin: 10px 0;
+        }
+        .buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn-primary, .btn-secondary {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 25px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.btn-primary {
+    background: #39FF14; /* Neon green */
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #2ECC71; /* A slightly darker green for hover */
+    transform: translateY(-2px);    
+}
+
+.btn-secondary {
+    background: #333;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #444;
+    transform: translateY(-2px);
+}
+        .reviews {
+            margin-top: 20px;
+        }
+        .reviews h2 {
+            font-size: 22px;
+            color: #39FF14;
+        }
+        .review {
+            background: #181818;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        .review strong {
+            color: #39FF14;
+        }
+        .right-panel {
+    width: 250px;
+    background: #121212;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 100vh;
+    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.right-panel h2 {
+    color: #39FF14;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.announcements {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.announcement {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-decoration: none;
+    color: #fff;
+    background: #222;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.announcement:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(157, 78, 221, 0.3);
+}
+
+.announcement img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.announcement-text {
+    padding: 10px;
+}
+
+.announcement-text h3 {
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: #39FF14;
+}
+
+.announcement-text p {
+    font-size: 14px;
+    color: #bbb;
+}
+.left-panel, .right-panel {
+    width: 250px;
+    background: #121212;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 100vh; /* Full viewport height */
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    position: sticky;
+    top: 0;
+    overflow-y: auto; /* Adds scrolling inside panel if content is too long */
+}
+.right-panel {
+    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.2);
+}
+        /* Loading screen fade effect */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0D0D0D;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 9999;
+    transition: opacity 0.5s ease-in-out; /* Smooth fade-out */
+}
+
+/* Logo in the center */
+.loading-logo {
+    width: 150px;
+    height: auto;
+}
+
+/* Spinner in bottom-right */
+.spinner {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top: 4px solid #39FF14;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+    </style>
+</head>
+<body>
+     <div class="loading-screen" id="loadingScreen">
+            <a href="EVELON.html">
+            <img src="Circles__1_-removebg-preview.png" alt="Loading Logo" class="loading-logo">
+        </a>            
+        <div class="spinner"></div>
+        </div>
+    <div class="left-panel">
+        <h2>Channels</h2>
+        <ul>
+            <li>
+                <img src="Mumbai City FC.png" alt="Templates Logo">
+                <strong>EVELVEN 28</strong> <span>20k</span>
+            </li>
+            <li>
+                <img src="VELOCITY.png" alt="Allianc@key Logo">
+                <strong>VELOCITY</strong> <span>21%</span>
+            </li>
+            <li>
+                <img src="To Play.png" alt="Shall Logo">
+                <strong>CrickIT 28</strong> <span>20.8%</span>
+            </li>
+            <li>
+                <img src="Add a heading (2).png" alt="Powder? Logo">
+                <strong>FIREBACK!</strong> <span>19.5%</span>
+            </li>
+            <li>
+                <img src="Add a heading (2).png" alt="Melando Logo">
+                <strong>Melando</strong> <span>19.0%</span>
+            </li>
+        </ul>
+        <h2>Platforms</h2>
+        <ul>
+            <li>
+                <img src="Add a heading (2).png" alt="Joint Big GameX Community Logo">
+                <strong>Joint Big GameX Community</strong>
+            </li>
+        </ul>
+        <div class="buttons">
+            <button class="btn-primary">Join Channel</button>
+            <button class="btn-secondary">Create Channel</button>
+        </div>
+    </div>
+    <div style="flex-grow: 1; display: flex; flex-direction: column;">
+        <nav class="navbar">
+            <div class="logo">
+                <a href="EVELON.html">
+                <img src="Circles__1_-removebg-preview.png" alt="GameX Logo" style="height: 60px;">
+                </a>
+            </div>
+            
+            <div class="nav-links">
+                <a href="#">Browse</a>
+                <a href="#">Shop</a>
+                <a href="#">News</a>
+                <a href="#">FAQ</a>
+            </div>
+            <div class="search-bar">
+                <i class="fa fa-search"></i>
+                <input type="text" placeholder="Search..." id="search-input">
+                <div class="search-results" id="search-results"></div>
+            </div>
+            <div class="auth-buttons">
+                <a href="auth.html"><button>Sign Up</button></a>
+                <a href="auth.html"><button>Log In</button></a>
+            </div>
+        </nav>
+
+        <!-- Center Content: Game Store Page -->
+        <div class="center-content">
+            <div class="game-container">
+                <img id="gameImage" alt="Cyberpunk 2077">
+                <h1 id="gameTitle"></h1>
+                <p id="gameDesc"></p>
+                <h2 id="gameCost" class="game-cost"></h2>
+                <div class="buttons">
+                    <button class="btn btn-primary">Buy Now</button>
+                    <button class="btn btn-secondary">Add to Cart</button>
+                </div>
+
+                <div class="reviews">
+                    <h2>Player Reviews</h2>
+                    <div class="review">
+                        <strong>Alex:</strong> "Amazing visuals and deep story. Absolutely worth it!"
+                    </div>
+                    <div class="review">
+                        <strong>Jordan:</strong> "A great RPG experience with insane customization options!"
+                    </div>
+                    <div class="review">
+                        <strong>Sam:</strong> "One of the best futuristic open-world games ever!"
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Panel -->
+    <div class="right-panel">
+        <h2>Patchlogs++</h2>
+        <div class="announcements">
+            <a href="https://example.com/game1" target="_blank" class="announcement">
+                <img src="Add a heading (2).png" alt="Game 1 Release">
+                <div class="announcement-text">
+                    <h3>Game 1: The New Adventure</h3>
+                    <p>Explore a vast open world filled with mysteries and challenges. Released on October 10, 2023.</p>
+                </div>
+            </a>
+            <a href="https://example.com/game2" target="_blank" class="announcement">
+                <img src="Add a heading (2).png" alt="Game 2 Release">
+                <div class="announcement-text">
+                    <h3>Game 2: Battle Royale</h3>
+                    <p>Join the ultimate battle royale experience with new maps and weapons. Released on October 15, 2023.</p>
+                </div>
+            </a>
+    </div>
+    <script>
+         window.onload = function() {
+    setTimeout(() => {
+        let loadingScreen = document.getElementById("loadingScreen");
+        loadingScreen.style.opacity = "0";  // Smooth fade-out
+        setTimeout(() => {
+            loadingScreen.style.display = "none";  // Hide after transition
+        }, 500); // Matches the CSS transition duration
+    }, 2000); // Delay before hiding loader
+};
+
+        function getQueryParam(param) {
+    let urlParams = new URLSearchParams(window.location.search);
+    return decodeURIComponent(urlParams.get(param));
+}
+
+// Set title
+document.getElementById("gameTitle").textContent = getQueryParam("title");
+
+document.getElementById("gameImage").src = getQueryParam("image");
+
+// Set description with line breaks
+document.getElementById("gameDesc").innerHTML = getQueryParam("desc").replace(/\n/g, "<br>");
+
+document.getElementById("downloadBtn").href = getQueryParam("download");
+
+// Set cost (with a default if missing)
+let cost = getQueryParam("cost");
+document.getElementById("gameCost").textContent = cost ? "Price: " + cost : "Price: Not Available";
+        const games = [
+      { name: "Valorant", image: "Add a heading (2).png" },
+      { name: "Fortnite", image: "Add a heading (2).png" },
+      { name: "PUBG", image: "Add a heading (2).png" },
+      { name: "Apex Legends", image: "Add a heading (2).png" },
+      { name: "Call of Duty", image: "Add a heading (2).png" },
+      { name: "League of Legends", image: "Add a heading (2).png" },
+      { name: "Minecraft", image: "Add a heading (2).png" }
+  ];
+  
+  const searchInput = document.getElementById("search-input");
+  const searchResults = document.getElementById("search-results");
+  
+  searchInput.addEventListener("input", function () {
+      const query = this.value.toLowerCase();
+      searchResults.innerHTML = "";
+      if (query) {
+          const filteredGames = games.filter(game => game.name.toLowerCase().includes(query));
+          if (filteredGames.length) {
+              searchResults.style.display = "flex";
+              filteredGames.forEach(game => {
+                  const gameLink = document.createElement("a");
+                  gameLink.href = "#";
+                  gameLink.innerHTML = `
+                      <img src="${game.image}" alt="${game.name}">
+                      <span>${game.name}</span>
+                  `;
+                  searchResults.appendChild(gameLink);
+              });
+          } else {
+              searchResults.style.display = "none";
+          }
+      } else {
+          searchResults.style.display = "none";
+      }
+  });
+      </script>
+</body>
+</html>

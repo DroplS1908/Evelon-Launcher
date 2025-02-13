@@ -1,0 +1,190 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #0D0D0D;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Main container with animation */
+.container {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.8s ease-in-out;
+}
+
+/* Panels */
+.panel {
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    transition: transform 0.8s ease-in-out;
+}
+
+/* Left panel (form section) */
+.left-panel {
+    left: 0;
+    background: #121212;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 60px;
+    transform: translateX(0%);
+}
+
+/* Right panel (background image) */
+.right-panel {
+    right: 0;
+    background: #181818;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateX(0%);
+}
+
+.right-panel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Form box */
+.form-box {
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+}
+
+h2 {
+    color: #fff;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    background: #222;
+    color: white;
+    font-size: 16px;
+}
+
+input:focus {
+    outline: 2px solid #39FF14;
+}
+
+/* Remember me & Forgot password */
+.remember-me {
+    color: #bbb;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 5px;
+}
+
+.forgot-password {
+    display: block;
+    text-align: right;
+    font-size: 14px;
+    color: #39FF14;
+    margin-top: 5px;
+    text-decoration: none;
+}
+
+/* Buttons */
+.btn {
+    width: 100%;
+    padding: 12px;
+    background: #39FF14;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 15px;
+}
+
+.btn:hover {
+    background: #2ECC71;
+}
+
+.toggle-text {
+    text-align: center;
+    margin-top: 15px;
+    color: #bbb;
+}
+
+.toggle-text a {
+    color: #39FF14;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Slide Effect */
+.container.sign-up-mode .left-panel {
+    transform: translateX(100%);
+}
+
+.container.sign-up-mode .right-panel {
+    transform: translateX(-100%);
+}
+/* Loading screen fade effect */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0D0D0D;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 9999;
+    transition: opacity 0.5s ease-in-out; /* Smooth fade-out */
+}
+
+/* Logo in the center */
+.loading-logo {
+    width: 150px;
+    height: auto;
+}
+
+/* Spinner in bottom-right */
+.spinner {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top: 4px solid #39FF14;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

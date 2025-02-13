@@ -1,0 +1,35 @@
+{
+  "name": "Evelon Launcher",
+  "short_name": "Evelon",
+  "start_url": "/EVELON.html", 
+  "id": "/EVELON.html",
+  "display": "standalone",
+  "background_color": "#0D0D0D",
+  "theme_color": "#39FF14",
+  "icons": [
+    {
+      "src": "Circles__1_-removebg-preview.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "Circles__1_-removebg-preview.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "Circles__1_-removebg-preview.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "Circles__1_-removebg-preview.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ]
+}
