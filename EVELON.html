@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evelon Launcher</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="description" content="Evelon Launcher - Your gateway to the best games and gaming communities.">
+    <meta name="keywords" content="gaming, launcher, games, Evelon, community">
+    <meta name="author" content="Your Name">
+    <meta property="og:title" content="Evelon Launcher">
+    <meta property="og:description" content="Your gateway to the best games and gaming communities.">
+    <meta property="og:image" content="https://yourwebsite.com/Circles__1_-removebg-preview.png">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@400;600&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    cursor: url('mouse.cur'), auto;
+    background-color: #0D0D0D;
+    font-family: 'Poppins', sans-serif;
+    color: #fff; 
+    display: flex;
+    min-height: 100vh;
+}
+h1, h2, h3 {
+    font-family: 'Orbitron', sans-serif;
+}
+        /* Scrollbar for the entire page */
+::-webkit-scrollbar {
+    width: 6px; /* Thin width */
+}
+
+/* Scrollbar track (background) */
+::-webkit-scrollbar-track {
+    background: #1A1A1A; /* Dark grey */
+    border-radius: 10px;
+}
+
+/* Scrollbar thumb (draggable part) */
+::-webkit-scrollbar-thumb {
+    background: #666; /* Medium grey */
+    border-radius: 10px;
+    transition: background 0.3s;
+}
+
+/* Scrollbar thumb on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #888; /* Slightly lighter grey */
+}
+
+a:link { 
+  text-decoration: none; 
+} 
+a:visited { 
+  text-decoration: none; 
+} 
+a:hover { 
+  text-decoration: none; 
+} 
+a:active { 
+  text-decoration: none; 
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(90deg, #1A1A1A, #0D0D0D);
+    padding: 15px 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+.navbar {
+    backdrop-filter: blur(10px);
+    background: rgba(18, 18, 18, 0.8);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+.navbar .nav-links {
+    display: flex;
+    gap: 25px;
+}
+.navbar .nav-links a {
+    color: #bbb;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s, transform 0.3s;
+}
+.navbar .nav-links a:hover {
+    color: #39FF14; /* Neon green */
+    transform: translateY(-2px);
+}
+.search-bar {
+    position: relative;
+    background: #222;
+    padding: 8px 15px;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-results {
+    position: absolute;
+    top: 50px; /* Adjust based on your design */
+    left: 0;
+    width: 100%;
+    background: #222; /* Dark background */
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    z-index: 1000;
+    border: 1px solid #444; /* Add a subtle border */
+}
+
+.search-results a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #bbb; /* Light gray text */
+    text-decoration: none;
+    padding: 8px;
+    border-radius: 8px;
+    transition: background 0.3s;
+    background: #333; /* Darker background for each result */
+}
+
+.search-results a:hover {
+    background: #444; /* Slightly lighter background on hover */
+}
+
+.search-results img {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.search-results span {
+    font-size: 14px;
+    color: #fff; /* White text for better contrast */
+}
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+.auth-buttons {
+    display: flex;
+    gap: 15px;
+}
+.auth-buttons button {
+    background: #39FF14; /* Neon green */
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s, transform 0.3s;
+}
+.auth-buttons button:hover {
+    background: #2ECC71; /* A slightly darker green for hover */
+    transform: translateY(-2px);
+}
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn-primary, .btn-secondary {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 25px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.btn-primary {
+    background: linear-gradient(90deg, #39FF14, #2ECC71);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #2ECC71; /* A slightly darker green for hover */
+    transform: translateY(-2px);    
+}
+
+.btn-secondary {
+    background: #333;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #444;
+    transform: translateY(-2px);
+}
+.center-content {
+    flex-grow: 1;
+    padding: 20px;
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+}
+.banner img {
+    width: 100%;
+    height: 300px;
+    border-radius: 15px;
+    object-fit: cover;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+.games-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+.game-card {
+    background: #222;
+    width: 100%;
+    margin: 0;
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+.game-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(57, 255, 20, 0.5);
+}
+.game-card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.game-card:hover::after {
+    opacity: 1;
+}
+.game-card img {
+    width: 100%;
+    height: 180px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+.game-card h3 {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1;
+    color: #fff;
+}
+h1 {
+    margin: 20px 0;
+    font-size: 32px;
+    color: #39FF14; /* Neon green */
+}
+
+.announcements {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.announcement {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-decoration: none;
+    color: #fff;
+    background: #222;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.announcement:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(157, 78, 221, 0.3);
+}
+
+.announcement img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.announcement-text {
+    padding: 10px;
+}
+
+.announcement-text h3 {
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: #39FF14;
+}
+
+.announcement-text p {
+    font-size: 14px;
+    color: #bbb;
+}
+.left-panel {
+    width: 120px; /* Increased width */
+    background: #121212;
+    padding: 20px;
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto; /* Allow scrolling if content overflows */
+    overflow-x: hidden;
+}
+
+.left-panel h2 {
+    color: #39FF14;
+    font-size: 24px; /* Larger font size */
+    margin-bottom: 20px; /* More spacing */
+}
+
+.left-panel ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.left-panel ul li {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* More spacing between items */
+    color: #bbb;
+    font-size: 16px; /* Larger font size */
+}
+
+.left-panel ul li img {
+    width: 40px; /* Larger icons */
+    height: 40px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.left-panel ul li strong {
+    color: #fff;
+    font-weight: bold;
+}
+
+.left-panel ul li span {
+    color: #39FF14;
+    font-weight: bold;
+    margin-left: auto;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* More spacing between buttons */
+    margin-top: 30px; /* More spacing above buttons */
+}
+
+.btn-primary, .btn-secondary {
+    padding: 12px 20px; /* Larger buttons */
+    border: none;
+    border-radius: 25px;
+    font-size: 16px; /* Larger font size */
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.btn-primary {
+    background: #39FF14;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #2ECC71;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: #333;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #444;
+    transform: translateY(-2px);
+}
+
+/* Loading screen fade effect */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0D0D0D;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 9999;
+    transition: opacity 0.5s ease-in-out; /* Smooth fade-out */
+}
+
+/* Logo in the center */
+.loading-logo {
+    width: 150px;
+    height: auto;
+}
+
+.progress-bar {
+    width: 200px;
+    height: 10px;
+    background: #333;
+    border-radius: 5px;
+    margin-top: 20px;
+    overflow: hidden;
+}
+
+.progress {
+    width: 0;
+    height: 100%;
+    background: #39FF14;
+    transition: width 2s ease-in-out;
+}
+.main-content {
+    flex-grow: 1; /* Takes up remaining space */
+    padding: 20px;
+    background: #0D0D0D;
+    overflow-y: auto; /* Allow scrolling if content overflows */
+}
+#clear-search {
+    background: none;
+    border: none;
+    color: #bbb;
+    cursor: pointer;
+    display: none;
+}
+
+#clear-search:hover {
+    color: #39FF14;
+}
+footer {
+    background: #121212;
+    padding: 20px;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.social-links a {
+    color: #bbb;
+    font-size: 20px;
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: #39FF14;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .left-panel {
+        width: 100%;
+        height: auto;
+        position: relative;
+        box-shadow: none;
+    }
+
+    .main-content {
+        order: 2; /* Ensure main content appears below side panels */
+    }
+
+    .featured-section {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .featured-section img {
+        width: 100%;
+        margin-top: 20px;
+    }
+}
+.featured-section {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(90deg, #1A1A1A, #0D0D0D);
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    max-width: 100%; /* Ensure it doesn't overflow */
+}
+
+.featured-content {
+    flex: 1;
+    padding-right: 20px;
+}
+
+.featured-section img {
+    width: 40%;
+    border-radius: 15px;
+}
+    </style>
+</head>
+<body>
+    <body>
+        <div class="loading-screen" id="loadingScreen">
+            <img src="Circles__1_-removebg-preview.png" alt="Loading Logo" class="loading-logo">
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+            <div class="spinner"></div>
+        </div>
+<div class="container">
+    <div class="left-panel">
+        <ul>
+            <li>
+                <a href="eleven.html"><img src="Mumbai City FC.png" alt="eleven"></a>
+            </li>
+            <li>
+                <a href="velocity.html"><img src="VELOCITY.png" alt="velocity"></a>
+            </li>
+            <li>
+                <a href="crickit.html"><img src="To Play.png" alt="crickit"></a>
+            </li>
+            <li>
+                <img src="Add a heading (2).png" alt="Powder? Logo">
+            </li>
+            <li>
+                <img src="Add a heading (2).png" alt="Melando Logo">
+            </li>
+        </ul>
+
+    </div>
+    <div style="flex-grow: 1; display: flex; flex-direction: column;">
+        <nav class="navbar">
+            <div class="logo">
+                <a href="EVELON.html">
+                <img src="Circles__1_-removebg-preview.png" alt="EVELON Logo" style="height: 60px;">
+                </a>
+            </div>
+            
+            <div class="nav-links">
+                <a href="#">Browse</a>
+                <a href="#">Shop</a>
+                <a href="#">News</a>
+                <a href="#">FAQ</a>
+            </div>
+            <div class="search-bar">
+                <i class="fa fa-search"></i>
+                <input type="text" placeholder="Search..." id="search-input">
+                <button id="clear-search"><i class="fa fa-times"></i></button>
+                <div class="search-results" id="search-results"></div>
+            </div>
+            <div class="auth-buttons">
+                <a href="auth.html"><button>Sign Up</button></a>
+                <a href="auth.html"><button>Log In</button></a>
+            </div>
+        </nav>
+        <div class="center-content">
+            <div class="banner">
+                <img src="F (1).png" alt="Welcome to EVELON!">
+            </div>
+            <div class="featured-section">
+                <div class="featured-content">
+                    <h2>Featured Game: ELEVEN 28</h2>
+                    <p>Experience the thrill of the ultimate football simulation. Download now!</p>
+                    <button class="btn-primary">Download Now</button>
+                </div>
+                <img src="Mumbai City FC.png" alt="Featured Game">
+            </div>
+            <h1><i class="fas fa-gamepad"></i></h1>
+            <div class="games-section">
+                <div class="game-card">
+                    <a href="eleven.html">
+                    <img src="Mumbai City FC.png" alt="Game 1">
+                    <h3>ELEVEN 28</h3></a>
+                </div>
+                <div class="game-card">
+                    <a href="velocity.html">
+                    <img src="VELOCITY.png" alt="Game 2">
+                    <h3>VELOCITY 28</h3></a>
+                </div>
+                <div class="game-card">
+                    <a href="crickit.html">
+                    <img src="To Play.png" alt="Game 3">
+                    <h3>CrickIT 28</h3></a>
+                </div>
+                <div class="game-card">
+                    <a href="EVELON_product.html?title=FIREBACK!&image=Add%20a%20heading%20(2).png&desc=Tactical shooter game&download=https://playvalorant.com">
+                    <img src="Add a heading (2).png" alt="Game 4">
+                    <h3>FIREBACK!</h3></a>
+                </div>
+                <footer>
+                    <div class="footer-content">
+                        <p>&copy; 2023 Evelon Launcher. All rights reserved.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-discord"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+</div>
+    <script>
+       window.onload = function() {
+    let progress = document.querySelector(".progress");
+    progress.style.width = "100%";
+    setTimeout(() => {
+        let loadingScreen = document.getElementById("loadingScreen");
+        loadingScreen.style.opacity = "0";
+        setTimeout(() => {
+            loadingScreen.style.display = "none";
+        }, 500);
+    }, 2000);
+};
+
+document.querySelectorAll('img').forEach(img => {
+    img.onerror = () => {
+        img.src = 'Circles__1_-removebg-preview.png'; // Fallback image
+    };
+});
+
+      const games = [
+    { name: "ELEVEN 28", image: "play (1).png" },
+    { name: "VELOCITY 28", image: "VELOCITY.png" },
+    { name: "CrickIT 28", image: "Add a heading (2).png" },
+    { name: "Mr.Doctor", image: "Add a heading (2).png" },
+    { name: "FIREBACK!", image: "Add a heading (2).png" },
+    { name: "PIXELS", image: "Add a heading (2).png" },
+    { name: "TBT - Truth Be Told", image: "Add a heading (2).png" }
+];
+
+const searchInput = document.getElementById("search-input");
+const searchResults = document.getElementById("search-results");
+let timeout;
+searchInput.addEventListener("input", function () {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+        const query = this.value.toLowerCase();
+        searchResults.innerHTML = "";
+        if (query) {
+            const filteredGames = games.filter(game => game.name.toLowerCase().includes(query));
+            if (filteredGames.length) {
+                searchResults.style.display = "flex";
+                filteredGames.forEach(game => {
+                    const gameLink = document.createElement("a");
+                    gameLink.href = "#";
+                    gameLink.innerHTML = `
+                        <img src="${game.image}" alt="${game.name}">
+                        <span>${game.name}</span>
+                    `;
+                    searchResults.appendChild(gameLink);
+                });
+            } else {
+                searchResults.innerHTML = `<span class="no-results">No results found</span>`;
+                searchResults.style.display = "flex";
+            }
+        } else {
+            searchResults.style.display = "none";
+        }
+    }, 300); // Adjust delay as needed
+});
+
+searchInput.addEventListener("input", function () {
+    const query = this.value.toLowerCase();
+    searchResults.innerHTML = "";
+    if (query) {
+        const filteredGames = games.filter(game => game.name.toLowerCase().includes(query));
+        if (filteredGames.length) {
+            searchResults.style.display = "flex";
+            filteredGames.forEach(game => {
+                const gameLink = document.createElement("a");
+                gameLink.href = "#";
+                gameLink.innerHTML = `
+                    <img src="${game.image}" alt="${game.name}">
+                    <span>${game.name}</span>
+                `;
+                searchResults.appendChild(gameLink);
+            });
+        } else {
+            searchResults.style.display = "none";
+        }
+    } else {
+        searchResults.style.display = "none";
+    }
+});
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/service-worker.js')
+    .then(() => console.log('Service Worker Registered!'))
+    .catch((error) => console.error('Service Worker Failed:', error));
+}
+const clearSearch = document.getElementById("clear-search");
+clearSearch.addEventListener("click", () => {
+    searchInput.value = "";
+    searchResults.style.display = "none";
+    clearSearch.style.display = "none";
+});
+
+searchInput.addEventListener("input", function () {
+    clearSearch.style.display = this.value ? "block" : "none";
+});
+const patchlogs = document.querySelectorAll(".patchlog");
+const prevButton = document.querySelector(".prev");
+const nextButton = document.querySelector(".next");
+let currentIndex = 0;
+
+function showPatchlog(index) {
+    patchlogs.forEach((patchlog, i) => {
+        patchlog.classList.toggle("active", i === index);
+    });
+}
+
+prevButton.addEventListener("click", () => {
+    currentIndex = (currentIndex > 0) ? currentIndex - 1 : patchlogs.length - 1;
+    showPatchlog(currentIndex);
+});
+
+nextButton.addEventListener("click", () => {
+    currentIndex = (currentIndex < patchlogs.length - 1) ? currentIndex + 1 : 0;
+    showPatchlog(currentIndex);
+});
+
+// Auto-rotate every 5 seconds
+setInterval(() => {
+    currentIndex = (currentIndex < patchlogs.length - 1) ? currentIndex + 1 : 0;
+    showPatchlog(currentIndex);
+}, 5000);
+const dots = document.querySelectorAll(".dot");
+
+function updateDots(index) {
+    dots.forEach((dot, i) => {
+        dot.classList.toggle("active", i === index);
+    });
+}
+
+dots.forEach((dot, i) => {
+    dot.addEventListener("click", () => {
+        currentIndex = i;
+        showPatchlog(currentIndex);
+        updateDots(currentIndex);
+    });
+});
+    </script>
+</body>
+</html>

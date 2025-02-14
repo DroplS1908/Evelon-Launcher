@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/EVELON.html",
+      "permanent": true
+    }
+  ]
+}
